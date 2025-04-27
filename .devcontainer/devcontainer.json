@@ -1,0 +1,51 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Ubuntu",
+	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"features": {
+		"ghcr.io/devcontainers/features/conda:1": {
+			"addCondaForge": true,
+			"version": "latest"
+		}
+	},
+
+	"postCreateCommand": "bash -c 'conda config --append channels conda-forge && eval \"$(/opt/conda/bin/conda shell.bash hook)\" && (conda env list | grep \"^ds\\s\" || conda env create -f /workspaces/DS_template/envs/default_environment.yml) && conda activate ds'"
+
+	"mounts": [
+		"source=${localWorkspaceFolder}/envs/default_environment.yml,target=/workspaces/DS_template/envs/default_environment.yml,type=bind"
+	],
+
+	// Port 8888 for Jupyter Notebook
+	"forwardPorts": [8888],
+	
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"docker.docker",
+				"eamodio.gitlens",
+				"github.vscode-pull-request-github",
+				"hbenl.vscode-test-explorer",
+				"littlefoxteam.vscode-python-test-adapter",
+				"ms-azuretools.vscode-docker",
+				"ms-python.black-formatter",
+				"ms-python.debugpy",
+				"ms-python.pylint",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-toolsai.jupyter",
+				"ms-toolsai.jupyter-keymap",
+				"ms-toolsai.jupyter-renderers",
+				"ms-toolsai.vscode-jupyter-cell-tags",
+				"ms-toolsai.vscode-jupyter-slideshow",
+				"ms-vscode.test-adapter-converter",
+				"njpwerner.autodocstring",
+				"oderwat.indent-rainbow",
+				"streetsidesoftware.code-spell-checker"
+			]
+		}
+	}
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
