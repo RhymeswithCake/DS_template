@@ -4,7 +4,7 @@
 	"name": "Ubuntu",
 	"image": "mcr.microsoft.com/devcontainers/base:noble",
 	"features": {
-		"ghcr.io/devcontainers/features/conda:1": {
+		"ghcr.io/devcontainers/features/conda:2": {
 			"addCondaForge": true,
 			"version": "latest"
 		}
